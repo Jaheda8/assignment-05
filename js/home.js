@@ -1,69 +1,112 @@
 let donationHistory = [];  // Global array to store donation history
 
-document.getElementById('donate-button').addEventListener('click', function(event) {
-    event.preventDefault();
-    
-    // Get the input value and convert it to a number
-    const inputAmount = parseFloat(document.getElementById('donate-amount-input').value.trim());
-    
-    // Get the current account balance
-    const accountBalanceElement = document.getElementById('account-balance');
-    const accountBalanceToNum = parseFloat(accountBalanceElement.innerText.replace(' BDT', '')); // Remove " BDT"
-    
-    // Validation
-    if (isNaN(inputAmount) || inputAmount <= 0) {
-        alert("Please enter a valid donation amount greater than zero.");
-        return; // Stop the transaction
-    }
+// Function to handle donations
+function handleDonateButton(cardIndex) {
+    const inputElement = document.getElementById(`donate-amount-input-${cardIndex}`);
+    const addBalanceElement = document.getElementById(`adding-balance-amount-${cardIndex}`);
+    const donateButton = document.getElementById(`donate-button-${cardIndex}`);
 
-    if (inputAmount > accountBalanceToNum) {
-        alert("Donation amount exceeds your account balance.");
-        return; // Stop the transaction
-    }
-
-    if (!document.getElementById('donate-amount-input').value.trim()) {
-        alert("Donation amount cannot be empty.");
-        return; // Stop the transaction
-    }
-
-    // Update the balance after successful validation
-    const updateAmountElement = document.getElementById('adding-balance-amount');
-    const updateAmuntToNum = parseFloat(updateAmountElement.innerText);
-    
-    // Add the new donation amount to the current balance
-    const newBalance = inputAmount + updateAmuntToNum;
-    
-    // Update the UI with the new balance
-    updateAmountElement.innerText = newBalance + " Tk";
-
-    // Update the account balance
-    const updatedAccountBalance = accountBalanceToNum - inputAmount; // Subtract the donation amount from the account balance
-    accountBalanceElement.innerText = updatedAccountBalance + " BDT"; // Update with new balance
-
-    // Store the donation info and time in the global array
-    const donationData = {
-        amount: inputAmount,
-        title: 'Donate for Flood at Noakhali, Bangladesh',
-        time: new Date().toLocaleString()  // Get the current time
-    };
-    donationHistory.push(donationData);
-
-    // Delay showing the congrats modal by 2 seconds
-    setTimeout(() => {
-        const congratsModal = document.getElementById('congratsModal');
+    donateButton.addEventListener('click', function (event) {
+        event.preventDefault();
         
-        // Populate the modal with donation and account balance information
-        document.getElementById('donation-amount-info').innerHTML = `<p  '> Your Donation Amount: ${inputAmount} Tk </p>
-       <p class =' text-teal-800'> Total donation amount: ${newBalance} Tk </p>`;
-        document.getElementById('account-balance-info').innerText = `Remaining Account Balance: ${updatedAccountBalance} BDT`;
-        
-        // Show the modal by removing 'hidden' class
-        congratsModal.classList.remove('hidden');
-    }, 500);
+        const inputAmount = parseFloat(inputElement.value.trim());
+        const accountBalanceElement = document.getElementById('account-balance');
+        const accountBalanceToNum = parseFloat(accountBalanceElement.innerText.replace(' BDT', ''));
+
+        // Validation
+        if (isNaN(inputAmount) || inputAmount <= 0) {
+            alert("Please enter a valid donation amount greater than zero.");
+            return; 
+        }
+
+        if (inputAmount > accountBalanceToNum) {
+            alert("Donation amount exceeds your account balance.");
+            return; 
+        }
+
+        // Update the balance
+        const updateAmountToNum = parseFloat(addBalanceElement.innerText);
+        const newBalance = inputAmount + updateAmountToNum;
+        addBalanceElement.innerText = newBalance + " Tk";
+
+        const updatedAccountBalance = accountBalanceToNum - inputAmount;
+        accountBalanceElement.innerText = updatedAccountBalance + " BDT";
+
+        // Store donation info
+        const donationData = {
+            amount: inputAmount,
+            title: 'Donate for Flood at Noakhali, Bangladesh',
+            time: new Date().toLocaleString()
+        };
+        donationHistory.push(donationData);
+
+        // Show success modal
+        setTimeout(() => {
+            const congratsModal = document.getElementById('congratsModal');
+            document.getElementById('donation-amount-info').innerHTML = `<p>Your Donation Amount: ${inputAmount} Tk</p><p class='text-teal-800'>Total donation amount: ${newBalance} Tk</p>`;
+            document.getElementById('account-balance-info').innerText = `Remaining Account Balance: ${updatedAccountBalance} BDT`;
+            congratsModal.classList.remove('hidden');
+        }, 500);
+    });
+}
+
+// Call the function for all cards
+for (let i = 1; i <= 3; i++) {
+    handleDonateButton(i);
+}
+
+// Close the modal
+document.getElementById('closeModalButton').addEventListener('click', function () {
+    document.getElementById('congratsModal').classList.add('hidden');
 });
 
-// Close the modal when "Close" button is clicked
-document.getElementById('closeModalButton').addEventListener('click', function() {
-    const congratsModal = document.getElementById('congratsModal');
-    congratsModal.classList.add('hidden'); // Hide the modal
+// Get references to the buttons
+const donateMenuBtn = document.getElementById('donate-menu');
+const historyMenuBtn = document.getElementById('history-donate-menu');
+
+// Function to update button active state
+function setActiveButton(activeButton, inactiveButton) {
+    activeButton.classList.add('bg-teal-800', 'text-white');
+    activeButton.classList.remove('btn-outline', 'text-teal-700');
+    inactiveButton.classList.remove('bg-teal-800', 'text-white');
+    inactiveButton.classList.add('btn-outline', 'text-teal-700');
+}
+
+// Handle Donation button click
+donateMenuBtn.addEventListener('click', function() {
+    console.log('Donation button clicked');
+    setActiveButton(donateMenuBtn, historyMenuBtn);
+    document.getElementById('main-container').classList.remove('hidden');
+    document.getElementById('history-container').classList.add('hidden');
+});
+
+// Handle History button click
+historyMenuBtn.addEventListener('click', function() {
+    console.log('History button clicked');
+
+    document.getElementById('history-container').classList.remove('hidden');
+    document.getElementById('main-container').classList.add('hidden');
+
+    const historyCard = document.getElementById('history-card');
+    historyCard.innerHTML = ''; 
+
+    // Check if there's any donation history
+    if (donationHistory.length === 0) {
+        historyCard.innerHTML = `<p>No donation history available.</p>`;
+        return;
+    }
+
+    donationHistory.forEach(donation => {
+        const div = document.createElement('div');
+        div.classList.add('border', 'border-gray-200', 'rounded-lg', 'p-4', 'my-2');
+        div.innerHTML = `
+            <h3 class='font-bold'>Your Donation Amount: ${donation.amount} Tk</h3>
+            <h3 class='font-bold'>For: ${donation.title}</h3>
+            <p>Donation Time: ${donation.time}</p>
+            <hr class="my-2">
+        `;
+        historyCard.appendChild(div);
+    });
+
+    setActiveButton(historyMenuBtn, donateMenuBtn);
 });
