@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <!-- Daisy ui link -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lexend Font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+
+  <style>
+    .lexend-font {
+      font-family: "Lexend", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+    }
+  </style>
+</head>
+
+<body class="lexend-font relative">
+  <!-- nav -->
+
+  <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky shadow-sm top-0 z-50">
+    <div class="bg-[#f9f7f3] bg-teal-50">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/blog.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <button type="button"
+            class="text-white bg-teal-600 btn-md font-bold text-xl hover:bg-teal-700  font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Blog
+          </button>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <img class="mx-2" src="./assets/coin.png" alt="" />
+          <h1 id="account-balance" class="font-bold text-xl text-gray-500">9000 BDT</h1>
+        </div>
+
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+          <img class="mx-4" src="./assets/logo.png" class="h-8" alt="Flowbite Logo" />
+          <span class="self-center font-bold text-2xl font-semibold whitespace-nowrap dark:text-white ">Donate
+            Bangladesh</span>
+        </div>
+      </div>
+    </div>
+    <!-- two button -->
+    <div class="relative justify-center w-full flex md:w-auto md:order-1" id="navbar-cta">
+      <button id="donate-menu"
+        class="btn btn-xl sm:btn-lg md:btn-md lg:btn-md m-3 bg-teal-600 text-white font-semibold text-xl hover:bg-teal-700">
+        Donation
+      </button>
+      <button id="history-donate-menu"
+        class="btn btn-outline btn-md sm:btn-sm md:btn-md lg:btn-md m-3 font-semibold text-xl text-teal-700 hover:bg-teal-600 ">
+        History
+      </button>
+    </div>
+  </nav>
+
+  <main id="main-container" class="">
+    <section id="" class="max-w-screen-xl mx-auto pt-6 relative">
+      <!-- card-1 -->
+      <div
+        class="mx-auto relative flex flex-col md:flex-row my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">
+        <div class="relative p-2.5 md:w-2/5 shrink-0 overflow-hidden flex justify-end ">
+          <img src="./assets/noakhali.png" alt="card-image"
+            class="h-full max-w rounded-md md:rounded-lg object-cover " />
+        </div>
+        <div class="p-6 ">
+          <!-- ...add money donation amount --------------------------------------------------->
+          <div class="my-2">
+            <button class="flex bg-gray btn">
+              <img class="" src="./assets/coin.png" alt="">
+              <h1 id="adding-balance-amount" class="text-xl text-gray-500">0</h1>
+            </button>
+          </div>
+
+          <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+            Donate for Flood at Noakhali, Bangladesh
+          </h4>
+          <p class="mb-8 text-slate-600 leading-normal font-light">
+            The recent floods in Noakhali have caused significant damage to homes infrastructure. Your donation will
+            help provide essential supplies to those affected by this disaster. Every contribution, big or small, makes
+            a difference. Please join us in supporting the relief efforts and making a positive impact on the lives of
+            those in need.
+          </p>
+          <div>
+            <!-- input donate amount ------------------------------------->
+            <input id="donate-amount-input" type="text" id="simple-search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Write Donation Amount" required />
+            <!-- donate button--------------------------------------- -->
+            <button id="donate-button"
+              class="btn btn-block my-2 bg-teal-600 text-white font-bold text-lg hover:bg-teal-700">Donate Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- card-2 section start -->
+    <section class="max-w-screen-xl mx-auto">
+      <!-- card-2 -->
+      <div
+        class="mx-auto relative flex flex-col md:flex-row my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">
+        <div class="relative p-2.5 md:w-2/5 shrink-0 overflow-hidden flex justify-end ">
+          <img src="./assets/noakhali.png" alt="card-image"
+            class="h-full max-w rounded-md md:rounded-lg object-cover " />
+        </div>
+        <div class="p-6 ">
+          <!-- ...add money donation amount -->
+          <div class="my-2">
+            <button class="flex bg-gray btn">
+              <img class="" src="./assets/coin.png" alt="">
+              <h1 class="text-xl text-gray-500">0 BDT</h1>
+            </button>
+          </div>
+
+          <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+            Donate for Flood at Noakhali, Bangladesh
+          </h4>
+          <p class="mb-8 text-slate-600 leading-normal font-light">
+            The recent floods in Noakhali have caused significant damage to homes infrastructure. Your donation will
+            help provide essential supplies to those affected by this disaster. Every contribution, big or small, makes
+            a difference. Please join us in supporting the relief efforts and making a positive impact on the lives of
+            those in need.
+          </p>
+          <div>
+            <input type="text" id="simple-search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Write Donation Amount" required />
+            <button class="btn btn-block my-2 bg-teal-600 text-white font-bold text-lg hover:bg-teal-700">Donate
+              Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- card-3 section start -->
+    <section class="max-w-screen-xl mx-auto">
+      <!-- card-3 -->
+      <div
+        class="mx-auto relative flex flex-col md:flex-row my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">
+        <div class="relative p-2.5 md:w-2/5 shrink-0 overflow-hidden flex justify-end ">
+          <img src="./assets/noakhali.png" alt="card-image"
+            class="h-full max-w rounded-md md:rounded-lg object-cover " />
+        </div>
+        <div class="p-6 ">
+          <!-- ...add money donation amount -->
+          <div class="my-2">
+            <button class="flex bg-gray btn">
+              <img class="" src="./assets/coin.png" alt="">
+              <h1 class="text-xl text-gray-500">0 BDT</h1>
+            </button>
+          </div>
+
+          <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+            Donate for Flood at Noakhali, Bangladesh
+          </h4>
+          <p class="mb-8 text-slate-600 leading-normal font-light">
+            The recent floods in Noakhali have caused significant damage to homes infrastructure. Your donation will
+            help provide essential supplies to those affected by this disaster. Every contribution, big or small, makes
+            a difference. Please join us in supporting the relief efforts and making a positive impact on the lives of
+            those in need.
+          </p>
+          <div>
+            <input type="text" id="simple-search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Write Donation Amount" required />
+            <button class="btn btn-block my-2 bg-teal-600 text-white font-bold text-lg hover:bg-teal-700">Donate
+              Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+
+
+
+<!-- Tailwind Modal for showing the donation success message -->
+<div id="congratsModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+      <h2 class="text-2xl font-bold mb-4 text-green-500">😊 Thank You!</h2>
+      <p id="donation-amount-info" class="text-gray-700"></p>
+      <p id="account-balance-info" class="text-gray-700 mt-2"></p>
+      <button id="closeModalButton" class="bg-red-500 text-white px-4 py-2 rounded mt-4">Close</button>
+  </div>
+
+  </main>
+   <!-- History -->
+    <!-- component -->
+    <!-- component -->
+    <section id="history-container" class="hidden max-w-screen-xl mt-8 flex items-center justify-center px-4 bg-white">
+      <div class="max-w-6xl w-full rounded-lg shadow-lg p-4 flex md:flex-row flex-col">
+          <div class="flex-1">
+              <h3 class="font-semibold text-lg tracking-wide">Donation History</h3>
+              <div id="history-donation-amount" class="text-gray-500 my-1">
+                  <!-- Donation history will be displayed here -->
+              </div>
+          </div>
+      </div>
+  </section>
+  
+  <script src="./js/home.js"></script>
+  <script src="./js/feature.js"></script>
+  <script src="./js/history.js"></script>
+
+</body>
+
+</html>
