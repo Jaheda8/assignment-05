@@ -34,8 +34,8 @@ historyMenuBtn.addEventListener('click', function() {
     donationHistory.forEach(donation => {
         const div = document.createElement('div');
         div.innerHTML = `
-            <p>Your Donation Amount: ${donation.amount} Tk</p>
-            <p>For: ${donation.title}</p>
+            <h3 class='font-bold'>Your Donation Amount: ${donation.amount} Tk</h3>
+            <h3 class='font-bold'>For: ${donation.title}</h3>
             <p>Donation Time: ${donation.time}</p>
         `;
         historyCard.appendChild(div);
