@@ -1,3 +1,5 @@
+let donationHistory = [];  // Global array to store donation history
+
 document.getElementById('donate-button').addEventListener('click', function(event) {
     event.preventDefault();
     
@@ -38,6 +40,14 @@ document.getElementById('donate-button').addEventListener('click', function(even
     const updatedAccountBalance = accountBalanceToNum - inputAmount; // Subtract the donation amount from the account balance
     accountBalanceElement.innerText = updatedAccountBalance + " BDT"; // Update with new balance
 
+    // Store the donation info and time in the global array
+    const donationData = {
+        amount: inputAmount,
+        title: 'Donate for Flood at Noakhali, Bangladesh',
+        time: new Date().toLocaleString()  // Get the current time
+    };
+    donationHistory.push(donationData);
+
     // Delay showing the congrats modal by 2 seconds
     setTimeout(() => {
         const congratsModal = document.getElementById('congratsModal');
@@ -49,7 +59,7 @@ document.getElementById('donate-button').addEventListener('click', function(even
         
         // Show the modal by removing 'hidden' class
         congratsModal.classList.remove('hidden');
-    }, 500); // 2000 milliseconds = 2 seconds
+    }, 500);
 });
 
 // Close the modal when "Close" button is clicked
